@@ -104,50 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// === Utility Functions ===
-
-// Show/Hide element
-function toggleElement(elementId) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.classList.toggle("hidden");
-  }
-}
-
-// Show element
-function showElement(elementId) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.classList.remove("hidden");
-  }
-}
-
-// Hide element
-function hideElement(elementId) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.classList.add("hidden");
-  }
-}
-
-// Format number to scientific notation
-function toScientific(num, decimals = 2) {
-  return num.toExponential(decimals);
-}
-
-// Calculate average
-function average(arr) {
-  return arr.reduce((a, b) => a + b, 0) / arr.length;
-}
-
-// Calculate standard deviation
-function stdDev(arr) {
-  const avg = average(arr);
-  const squareDiffs = arr.map((value) => Math.pow(value - avg, 2));
-  const avgSquareDiff = average(squareDiffs);
-  return Math.sqrt(avgSquareDiff);
-}
-
 // === Search Functions ===
 
 // Perform content search on current page

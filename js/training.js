@@ -68,7 +68,7 @@ async function runSimulation(algorithms, generations, runs, scenario) {
         };
         
         // API call to Python backend
-        const response = await fetch('/api/simulate', {
+        const response = await fetch('http://localhost:5000/api/simulate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
