@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Run optimization simulations and view results"
+    />
+    <title>Training - Healthcare Scheduler</title>
+    <link rel="stylesheet" href="css/halodoc-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
+            />
+          </svg>
+          Healthcare Scheduler
+        </a>
+
+        <ul class="navbar-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+
+        <div class="navbar-search">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search..." />
+        </div>
+
+        <button class="navbar-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== Page Header ===== -->
+    <section class="hero" style="padding: 50px 0">
+      <div class="container">
+        <h1>Training & Simulation</h1>
+        <p>Configure parameters and run optimization simulations</p>
+      </div>
+    </section>
+
+    <!-- ===== Configuration Section ===== -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width: 1000px; margin: 0 auto">
+          <div class="card">
+            <h2 class="card-header">Simulation Configuration</h2>
+            <div class="card-body">
+              <form id="simulationForm">
+                <!-- Algorithm Selection -->
+                <div class="form-group">
+                  <label class="form-label">Select Algorithms to Compare</label>
+                  <div class="grid grid-3" style="gap: 12px">
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="algorithms"
+                        value="Random"
+                        checked
+                      />
+                      <span>Random Solver</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="algorithms"
+                        value="Greedy"
+                        checked
+                      />
+                      <span>Greedy Solver</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="algorithms"
+                        value="DE"
+                        checked
+                      />
+                      <span>DE (Differential Evolution)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="algorithms"
+                        value="GA"
+                        checked
+                      />
+                      <span>GA (Genetic Algorithm)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="algorithms"
+                        value="DGA"
+                        checked
+                      />
+                      <span>DGA (Distributed GA)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Generations -->
+                <div class="grid grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="generations"
+                      >Number of Generations</label
+                    >
+                    <input
+                      type="number"
+                      id="generations"
+                      class="form-input"
+                      value="100"
+                      min="10"
+                      max="500"
+                      step="10"
+                    />
+                    <small style="color: #666"
+                      >Default: 100 (recommended range: 10-500)</small
+                    >
+                  </div>
+
+                  <!-- Number of Runs -->
+                  <div class="form-group">
+                    <label class="form-label" for="runs">Number of Runs</label>
+                    <input
+                      type="number"
+                      id="runs"
+                      class="form-input"
+                      value="1"
+                      min="1"
+                      max="30"
+                    />
+                    <small style="color: #666"
+                      >Each algorithm runs multiple times for statistical
+                      analysis</small
+                    >
+                  </div>
+                </div>
+
+                <!-- Scenario Selection -->
+                <div class="form-group">
+                  <label class="form-label" for="scenario"
+                    >Test Instance (Scenario)</label
+                  >
+                  <select id="scenario" class="form-select">
+                    <option value="T1">
+                      T1 - 100 patients, 10 doctors (Small)
+                    </option>
+                    <option value="T2">
+                      T2 - 100 patients, 20 doctors (Small)
+                    </option>
+                    <option value="T3">
+                      T3 - 100 patients, 30 doctors (Small)
+                    </option>
+                    <option value="T4">
+                      T4 - 100 patients, 40 doctors (Small)
+                    </option>
+                    <option value="T5" selected>
+                      T5 - 200 patients, 10 doctors (Medium)
+                    </option>
+                    <option value="T6">
+                      T6 - 200 patients, 20 doctors (Medium)
+                    </option>
+                    <option value="T7">
+                      T7 - 200 patients, 30 doctors (Medium)
+                    </option>
+                    <option value="T8">
+                      T8 - 200 patients, 40 doctors (Medium)
+                    </option>
+                    <option value="T9">
+                      T9 - 300 patients, 10 doctors (Large)
+                    </option>
+                    <option value="T10">
+                      T10 - 300 patients, 20 doctors (Large)
+                    </option>
+                    <option value="T11">
+                      T11 - 300 patients, 30 doctors (Large)
+                    </option>
+                    <option value="T12">
+                      T12 - 300 patients, 40 doctors (Large)
+                    </option>
+                    <option value="T13">
+                      T13 - 400 patients, 10 doctors (Very Large)
+                    </option>
+                    <option value="T14">
+                      T14 - 400 patients, 20 doctors (Very Large)
+                    </option>
+                    <option value="T15">
+                      T15 - 400 patients, 30 doctors (Very Large)
+                    </option>
+                    <option value="T16">
+                      T16 - 400 patients, 40 doctors (Very Large)
+                    </option>
+                  </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  style="width: 100%; margin-top: 16px"
+                >
+                  <span id="btnText">Run Simulation</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div
+            id="loadingSpinner"
+            class="hidden"
+            style="text-align: center; margin-top: 30px"
+          >
+            <div class="spinner"></div>
+            <p style="color: #666; margin-top: 16px">
+              Running simulation... This may take a moment.
+            </p>
+          </div>
+
+          <!-- Results Section -->
+          <div id="resultsSection" class="hidden" style="margin-top: 40px">
+            <!-- Summary Stats -->
+            <div class="card mb-3">
+              <h2 class="card-header">Simulation Results</h2>
+              <div class="card-body">
+                <p id="resultsSummary" style="color: #666"></p>
+              </div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="card mb-3">
+              <h3 class="card-header">Performance Summary</h3>
+              <div class="card-body">
+                <div class="table-container">
+                  <table class="table" id="resultsTable">
+                    <thead>
+                      <tr>
+                        <th>Algorithm</th>
+                        <th>Average TF</th>
+                        <th>Std Dev</th>
+                        <th>Best TF</th>
+                      </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                      <!-- Results populated by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Convergence Chart -->
+            <div class="card">
+              <h3 class="card-header">Convergence Graph</h3>
+              <div class="card-body">
+                <canvas id="convergenceChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Healthcare Scheduler</h4>
+            <p>
+              Advanced optimization platform for cloud healthcare patient-doctor
+              scheduling using distributed genetic algorithms.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>📧 contact@healthscheduler.com</p>
+            <p>📱 +62 xxx xxxx xxxx</p>
+            <div class="footer-social">
+              <a href="#" title="Instagram">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="about.html">About</a></p>
+            <p><a href="training.html">Training</a></p>
+            <p><a href="reference.html">Reference</a></p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 Healthcare Scheduler Project. Cloud Healthcare
+            Optimization Research.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/training.js"></script>
+  </body>
+</html>

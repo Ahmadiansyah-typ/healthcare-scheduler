@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about cloud healthcare scheduling optimization algorithms"
+    />
+    <title>About - Healthcare Scheduler</title>
+    <link rel="stylesheet" href="css/halodoc-theme.css" />
+  </head>
+  <body>
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
+            />
+          </svg>
+          Healthcare Scheduler
+        </a>
+
+        <ul class="navbar-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+
+        <div class="navbar-search">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search..." />
+        </div>
+
+        <button class="navbar-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== Page Header ===== -->
+    <section class="hero" style="padding: 60px 0">
+      <div class="container">
+        <h1>About the Project</h1>
+        <p>
+          Detailed information about algorithms, methodology, and research
+          objectives
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Project Overview ===== -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto">
+          <h2 class="mb-3">Project Overview</h2>
+          <p>
+            This research project focuses on optimizing patient-doctor
+            scheduling in cloud healthcare environments. The primary goal is to
+            efficiently assign patients to available doctors while minimizing
+            workload imbalance across all healthcare providers.
+          </p>
+          <p>
+            The problem is formulated as an optimization task where each patient
+            must be assigned to exactly one doctor, and the objective is to
+            minimize the standard deviation of total consultation times across
+            all doctors. Lower standard deviation indicates better workload
+            balance and more equitable distribution of patients.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Problem Definition ===== -->
+    <section class="section bg-light">
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto">
+          <h2 class="mb-3">Problem Definition</h2>
+
+          <div class="card mb-3">
+            <h3 class="card-header">Mathematical Formulation</h3>
+            <div class="card-body">
+              <p><strong>Input:</strong></p>
+              <ul style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>nP</strong>: Number of patients (100, 200, 300, or
+                  400)
+                </li>
+                <li>
+                  <strong>nD</strong>: Number of doctors (10, 20, 30, or 40)
+                </li>
+                <li>
+                  <strong>patient_times[i]</strong>: Consultation time for
+                  patient i (random: 5-20 minutes)
+                </li>
+              </ul>
+
+              <p class="mt-3"><strong>Decision Variable:</strong></p>
+              <ul style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>assignment[i]</strong>: Doctor index assigned to
+                  patient i (0 to nD-1)
+                </li>
+              </ul>
+
+              <p class="mt-3"><strong>Objective Function (TF):</strong></p>
+              <p
+                style="
+                  padding: 16px;
+                  background: #f5f5f5;
+                  border-radius: 8px;
+                  font-family: monospace;
+                  margin-top: 12px;
+                "
+              >
+                TF = σ(doctor_times) = Standard Deviation of [Σ patient_times[i]
+                for all patients assigned to each doctor]
+              </p>
+
+              <p class="mt-3">
+                <strong>Goal:</strong> Minimize TF (lower values = better
+                balance)
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-header">Configuration Parameters</h3>
+            <div class="card-body">
+              <div class="grid grid-2">
+                <div>
+                  <p><strong>Generations:</strong> 100 (max iterations)</p>
+                  <p><strong>PopSize_Standard:</strong> 80 individuals</p>
+                  <p><strong>Time Range:</strong> 5-20 minutes</p>
+                </div>
+                <div>
+                  <p><strong>MR:</strong> 0.1 (Mutation Rate)</p>
+                  <p><strong>F:</strong> 0.8 (DE scaling factor)</p>
+                  <p><strong>CR:</strong> 0.9 (Crossover Rate)</p>
+                </div>
+              </div>
+              <p class="mt-2">
+                <strong>DGA-specific:</strong> NSP=4 sub-populations, SPS=20 per
+                sub-pop, MI=5 (migration interval)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Algorithms ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center mb-4">Optimization Algorithms</h2>
+        <div style="max-width: 900px; margin: 0 auto">
+          <!-- Random Solver -->
+          <div class="card mb-3">
+            <h3 class="card-header flex" style="align-items: center; gap: 12px">
+              <span
+                style="
+                  display: inline-block;
+                  width: 12px;
+                  height: 12px;
+                  background: cyan;
+                  border-radius: 50%;
+                "
+              ></span>
+              Random Solver
+            </h3>
+            <div class="card-body">
+              <p><strong>Type:</strong> Baseline / Stochastic Search</p>
+              <p><strong>Algorithm Flow:</strong></p>
+              <ol style="margin-left: 20px; color: #666">
+                <li>
+                  Generate random assignment: each patient randomly assigned to
+                  a doctor (0 to nD-1)
+                </li>
+                <li>Calculate TF (standard deviation of doctor workloads)</li>
+                <li>
+                  Repeat for specified iterations, keeping the best solution
+                  found
+                </li>
+              </ol>
+              <p>
+                <strong>Characteristics:</strong> No intelligent search, purely
+                random exploration. Serves as performance baseline.
+              </p>
+            </div>
+          </div>
+
+          <!-- Greedy Solver -->
+          <div class="card mb-3">
+            <h3 class="card-header flex" style="align-items: center; gap: 12px">
+              <span
+                style="
+                  display: inline-block;
+                  width: 12px;
+                  height: 12px;
+                  background: #2ecc71;
+                  border-radius: 50%;
+                "
+              ></span>
+              Greedy Solver
+            </h3>
+            <div class="card-body">
+              <p>
+                <strong>Type:</strong> Deterministic / Constructive Heuristic
+              </p>
+              <p><strong>Algorithm Flow:</strong></p>
+              <ol style="margin-left: 20px; color: #666">
+                <li>Initialize all doctor loads to 0</li>
+                <li>
+                  For each patient (in order):
+                  <ul style="margin-left: 20px">
+                    <li>Find doctor with minimum current workload</li>
+                    <li>Assign patient to that doctor</li>
+                    <li>Update doctor's workload</li>
+                  </ul>
+                </li>
+                <li>Calculate final TF</li>
+              </ol>
+              <p>
+                <strong>Characteristics:</strong> Fast, deterministic (always
+                same result for same input), myopic (makes locally optimal
+                choices).
+              </p>
+            </div>
+          </div>
+
+          <!-- DE Solver -->
+          <div class="card mb-3">
+            <h3 class="card-header flex" style="align-items: center; gap: 12px">
+              <span
+                style="
+                  display: inline-block;
+                  width: 12px;
+                  height: 12px;
+                  background: #ff4d4d;
+                  border-radius: 50%;
+                "
+              ></span>
+              DE Solver (Differential Evolution)
+            </h3>
+            <div class="card-body">
+              <p>
+                <strong>Type:</strong> Population-based Evolutionary Algorithm
+              </p>
+              <p><strong>Algorithm Flow:</strong></p>
+              <ol style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>Initialization:</strong> Generate 80 random
+                  individuals (assignments)
+                </li>
+                <li>
+                  <strong>Evaluation:</strong> Calculate fitness (TF) for each
+                  individual
+                </li>
+                <li>
+                  <strong>For each generation:</strong>
+                  <ul style="margin-left: 20px">
+                    <li>
+                      <strong>Mutation:</strong> For each target individual i:
+                      <ul style="margin-left: 20px">
+                        <li>
+                          Select two random individuals r1, r2 (different from
+                          i)
+                        </li>
+                        <li>Create mutant vector: best + F × (r1 - r2)</li>
+                        <li>F = 0.8 (scaling factor)</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Crossover:</strong>
+                      <ul style="margin-left: 20px">
+                        <li>
+                          Combine target and mutant using crossover rate CR =
+                          0.9
+                        </li>
+                        <li>
+                          For each gene: use mutant gene with probability CR,
+                          else use target gene
+                        </li>
+                        <li>Discretize result (round to valid doctor index)</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Selection:</strong>
+                      <ul style="margin-left: 20px">
+                        <li>
+                          If trial fitness ≤ target fitness: replace target with
+                          trial
+                        </li>
+                        <li>Update global best if improved</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>Return best solution found</li>
+              </ol>
+              <p>
+                <strong>Parameters:</strong> PopSize=80, F=0.8, CR=0.9,
+                Generations=100
+              </p>
+            </div>
+          </div>
+
+          <!-- GA Solver -->
+          <div class="card mb-3">
+            <h3 class="card-header flex" style="align-items: center; gap: 12px">
+              <span
+                style="
+                  display: inline-block;
+                  width: 12px;
+                  height: 12px;
+                  background: #2ecc71;
+                  border-radius: 50%;
+                "
+              ></span>
+              GA Solver (Genetic Algorithm)
+            </h3>
+            <div class="card-body">
+              <p>
+                <strong>Type:</strong> Population-based Evolutionary Algorithm
+              </p>
+              <p><strong>Algorithm Flow:</strong></p>
+              <ol style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>Initialization:</strong> Generate 80 random
+                  individuals
+                </li>
+                <li>
+                  <strong>Evaluation:</strong> Calculate fitness for each
+                  individual
+                </li>
+                <li>
+                  <strong>For each generation:</strong>
+                  <ul style="margin-left: 20px">
+                    <li>
+                      <strong>Tournament Selection:</strong>
+                      <ul style="margin-left: 20px">
+                        <li>Randomly select 2 individuals</li>
+                        <li>Choose the one with better fitness as parent</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Reproduction:</strong> Create child by copying
+                      parent genes
+                    </li>
+                    <li>
+                      <strong>Mutation:</strong>
+                      <ul style="margin-left: 20px">
+                        <li>
+                          With probability MR = 0.1: randomly change one gene to
+                          a random doctor
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Evaluation:</strong> Calculate child fitness
+                    </li>
+                    <li>Repeat to create new population of 80 individuals</li>
+                  </ul>
+                </li>
+                <li>Track and return global best across all generations</li>
+              </ol>
+              <p>
+                <strong>Parameters:</strong> PopSize=80, MR=0.1, Generations=100
+              </p>
+            </div>
+          </div>
+
+          <!-- DGA Solver -->
+          <div class="card" style="border: 2px solid #d8122a">
+            <h3
+              class="card-header flex text-red"
+              style="align-items: center; gap: 12px"
+            >
+              <span
+                style="
+                  display: inline-block;
+                  width: 12px;
+                  height: 12px;
+                  background: orange;
+                  border-radius: 50%;
+                "
+              ></span>
+              DGA Solver (Distributed Genetic Algorithm)
+            </h3>
+            <div class="card-body">
+              <p>
+                <strong>Type:</strong> Distributed Population-based Evolutionary
+                Algorithm
+              </p>
+              <p><strong>Algorithm Flow:</strong></p>
+              <ol style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>Initialization:</strong> Create 4 sub-populations
+                  (NSP=4), each with 20 individuals (SPS=20)
+                </li>
+                <li>
+                  <strong>Evaluation:</strong> Calculate fitness for all
+                  individuals in all sub-populations
+                </li>
+                <li>
+                  <strong>For each generation:</strong>
+                  <ul style="margin-left: 20px">
+                    <li>
+                      <strong
+                        >Local Evolution (for each sub-population
+                        independently):</strong
+                      >
+                      <ul style="margin-left: 20px">
+                        <li>
+                          <strong>Tournament Selection:</strong> Select 2 pairs
+                          of individuals, choose better from each pair as
+                          parents (2 parents total)
+                        </li>
+                        <li>
+                          <strong>Crossover:</strong> Create child by randomly
+                          selecting genes from parent 1 or parent 2 (50%
+                          probability each)
+                        </li>
+                        <li>
+                          <strong>Mutation:</strong> With probability MR=0.1,
+                          randomly change one gene
+                        </li>
+                        <li>
+                          <strong>Evaluation:</strong> Calculate child fitness
+                        </li>
+                        <li>
+                          Repeat to create new sub-population of 20 individuals
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Migration (every MI=5 generations):</strong>
+                      <ul style="margin-left: 20px">
+                        <li>
+                          Extract best individual (elite) from each
+                          sub-population
+                        </li>
+                        <li>
+                          Send each elite to the next sub-population (circular:
+                          0→1→2→3→0)
+                        </li>
+                        <li>
+                          Replace a random non-best individual in target
+                          sub-population with incoming elite
+                        </li>
+                        <li>
+                          <strong>Purpose:</strong> Share good solutions between
+                          sub-populations, maintain diversity
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Global Best Update:</strong> Find best individual
+                      across all sub-populations
+                    </li>
+                  </ul>
+                </li>
+                <li>Return global best solution</li>
+              </ol>
+              <p>
+                <strong>Parameters:</strong> NSP=4, SPS=20, MR=0.1, MI=5,
+                Generations=100
+              </p>
+              <p class="mt-2">
+                <strong>Advantages:</strong> Parallel evolution maintains
+                diversity, migration mechanism facilitates knowledge sharing,
+                typically outperforms standard GA on complex problems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Research Objectives ===== -->
+    <section class="section bg-light">
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto">
+          <h2 class="mb-3">Research Objectives</h2>
+
+          <div class="grid grid-2">
+            <div class="card">
+              <h3 class="card-header">Primary Objective</h3>
+              <div class="card-body">
+                <p>
+                  Compare the effectiveness of five optimization algorithms
+                  (Random, Greedy, DE, GA, DGA) on cloud healthcare
+                  patient-doctor scheduling across 16 test instances (T1-T16)
+                  with varying problem scales.
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-header">Expected Outcomes</h3>
+              <div class="card-body">
+                <p>
+                  Demonstrate that DGA (Distributed Genetic Algorithm) achieves
+                  superior performance in terms of solution quality (lower TF
+                  values) and consistency across different problem instances.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-3">
+            <h3 class="card-header">Evaluation Metrics</h3>
+            <div class="card-body">
+              <p><strong>Performance Measures:</strong></p>
+              <ul style="margin-left: 20px; color: #666">
+                <li>
+                  <strong>Average TF:</strong> Mean objective function value
+                  over multiple runs (lower is better)
+                </li>
+                <li>
+                  <strong>Standard Deviation:</strong> Consistency of results
+                  across runs (lower indicates more stable algorithm)
+                </li>
+                <li>
+                  <strong>Convergence Speed:</strong> How quickly the algorithm
+                  reaches good solutions (visualized in convergence graphs)
+                </li>
+                <li>
+                  <strong>Scalability:</strong> Performance on different problem
+                  sizes (100-400 patients, 10-40 doctors)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Healthcare Scheduler</h4>
+            <p>
+              Advanced optimization platform for cloud healthcare patient-doctor
+              scheduling using distributed genetic algorithms.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>📧 contact@healthscheduler.com</p>
+            <p>📱 +62 xxx xxxx xxxx</p>
+            <div class="footer-social">
+              <a href="#" title="Instagram">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="about.html">About</a></p>
+            <p><a href="training.html">Training</a></p>
+            <p><a href="reference.html">Reference</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 Healthcare Scheduler Project. Cloud Healthcare
+            Optimization Research.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

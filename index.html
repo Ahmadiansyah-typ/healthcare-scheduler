@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cloud Healthcare Patient-Doctor Scheduling Optimization using Distributed Genetic Algorithm"
+    />
+    <title>Healthcare Scheduler - Cloud Optimization Platform</title>
+    <link rel="stylesheet" href="css/halodoc-theme.css" />
+  </head>
+  <body>
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
+            />
+          </svg>
+          Healthcare Scheduler
+        </a>
+
+        <ul class="navbar-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+
+        <div class="navbar-search">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search..." />
+        </div>
+
+        <button class="navbar-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== Hero Section ===== -->
+    <section class="hero">
+      <div class="container">
+        <h1>Cloud Healthcare Scheduling Optimization</h1>
+        <p>
+          Advanced patient-doctor assignment using distributed genetic
+          algorithms and evolutionary optimization techniques
+        </p>
+        <a
+          href="training.html"
+          class="btn btn-lg"
+          style="background: white; color: #d8122a"
+          >Start Simulation</a
+        >
+      </div>
+    </section>
+
+    <!-- ===== Introduction Section ===== -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center">
+          <h2 class="mb-3">Welcome to Healthcare Scheduler</h2>
+          <p style="font-size: 1.1rem">
+            This platform simulates and compares multiple optimization
+            algorithms for solving the cloud healthcare patient-doctor
+            scheduling problem. The objective is to minimize workload imbalance
+            (measured as standard deviation of doctor consultation times) across
+            healthcare providers while efficiently assigning patients.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Problem Overview ===== -->
+    <section class="section bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Problem Definition</h2>
+        <div class="grid grid-2" style="max-width: 900px; margin: 0 auto">
+          <div class="card">
+            <div class="card-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">Input</h3>
+            <div class="card-body">
+              <p><strong>nP</strong> patients (100-400)</p>
+              <p><strong>nD</strong> doctors (10-40)</p>
+              <p>Each patient has a random consultation time (5-20 minutes)</p>
+              <p>
+                <strong>16 test instances</strong> (T1-T16) with varying scales
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">Objective</h3>
+            <div class="card-body">
+              <p>
+                <strong>Minimize:</strong> Standard deviation of total
+                consultation time across all doctors
+              </p>
+              <p><strong>Goal:</strong> Balanced workload distribution</p>
+              <p><strong>Metric (TF):</strong> σ(doctor_times)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Algorithms Section ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center mb-4">Optimization Algorithms</h2>
+        <p class="text-center mb-4" style="max-width: 700px; margin: 0 auto">
+          Compare five different optimization approaches, from simple baselines
+          to advanced evolutionary algorithms
+        </p>
+
+        <div class="grid grid-4">
+          <div class="card">
+            <div
+              class="card-icon"
+              style="background: rgba(0, 255, 255, 0.1); color: cyan"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">Random</h3>
+            <div class="card-body">
+              Baseline approach generating random patient-doctor assignments
+              over multiple iterations
+            </div>
+          </div>
+
+          <div class="card">
+            <div
+              class="card-icon"
+              style="background: rgba(46, 204, 113, 0.1); color: #2ecc71"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">Greedy</h3>
+            <div class="card-body">
+              Deterministic algorithm assigning each patient to the doctor with
+              the least current workload
+            </div>
+          </div>
+
+          <div class="card">
+            <div
+              class="card-icon"
+              style="background: rgba(255, 77, 77, 0.1); color: #ff4d4d"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">DE</h3>
+            <div class="card-body">
+              Differential Evolution with mutation, crossover, and selection
+              operations (PopSize: 80)
+            </div>
+          </div>
+
+          <div class="card">
+            <div
+              class="card-icon"
+              style="background: rgba(255, 165, 0, 0.1); color: orange"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-header">GA</h3>
+            <div class="card-body">
+              Genetic Algorithm using tournament selection and mutation (MR:
+              0.1)
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card mt-4"
+          style="
+            max-width: 700px;
+            margin: 32px auto 0;
+            background: linear-gradient(
+              135deg,
+              rgba(216, 18, 42, 0.05),
+              rgba(255, 165, 0, 0.05)
+            );
+          "
+        >
+          <h3 class="card-header text-red">
+            ⭐ DGA - Distributed Genetic Algorithm
+          </h3>
+          <div class="card-body">
+            <p><strong>Advanced approach</strong> featuring:</p>
+            <ul style="margin-left: 20px; color: #666">
+              <li>
+                <strong>4 sub-populations</strong> (NSP) with 20 individuals
+                each (SPS)
+              </li>
+              <li>
+                <strong>Parallel evolution</strong> with independent selection
+                and mutation
+              </li>
+              <li>
+                <strong>Migration mechanism</strong> every 5 iterations (MI) for
+                diversity
+              </li>
+              <li>
+                <strong>Global best tracking</strong> across all sub-populations
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Test Instances ===== -->
+    <section class="section bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Test Instances (T1-T16)</h2>
+        <p class="text-center mb-4">
+          Comprehensive test suite covering various problem scales
+        </p>
+
+        <div class="table-container" style="max-width: 800px; margin: 0 auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Instance</th>
+                <th>Patients (nP)</th>
+                <th>Doctors (nD)</th>
+                <th>Complexity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>T1</td>
+                <td>100</td>
+                <td>10</td>
+                <td>Small</td>
+              </tr>
+              <tr>
+                <td>T2</td>
+                <td>100</td>
+                <td>20</td>
+                <td>Small</td>
+              </tr>
+              <tr>
+                <td>T3</td>
+                <td>100</td>
+                <td>30</td>
+                <td>Small</td>
+              </tr>
+              <tr>
+                <td>T4</td>
+                <td>100</td>
+                <td>40</td>
+                <td>Small</td>
+              </tr>
+              <tr>
+                <td>T5</td>
+                <td>200</td>
+                <td>10</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>T6</td>
+                <td>200</td>
+                <td>20</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>T7</td>
+                <td>200</td>
+                <td>30</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>T8</td>
+                <td>200</td>
+                <td>40</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>T9</td>
+                <td>300</td>
+                <td>10</td>
+                <td>Large</td>
+              </tr>
+              <tr>
+                <td>T10</td>
+                <td>300</td>
+                <td>20</td>
+                <td>Large</td>
+              </tr>
+              <tr>
+                <td>T11</td>
+                <td>300</td>
+                <td>30</td>
+                <td>Large</td>
+              </tr>
+              <tr>
+                <td>T12</td>
+                <td>300</td>
+                <td>40</td>
+                <td>Large</td>
+              </tr>
+              <tr>
+                <td>T13</td>
+                <td>400</td>
+                <td>10</td>
+                <td>Very Large</td>
+              </tr>
+              <tr>
+                <td>T14</td>
+                <td>400</td>
+                <td>20</td>
+                <td>Very Large</td>
+              </tr>
+              <tr>
+                <td>T15</td>
+                <td>400</td>
+                <td>30</td>
+                <td>Very Large</td>
+              </tr>
+              <tr>
+                <td>T16</td>
+                <td>400</td>
+                <td>40</td>
+                <td>Very Large</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA Section ===== -->
+    <section class="section">
+      <div class="container text-center">
+        <h2 class="mb-3">Ready to Run Simulations?</h2>
+        <p
+          class="mb-4"
+          style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px"
+        >
+          Configure parameters, select algorithms to compare, and visualize
+          convergence results in real-time
+        </p>
+        <a href="training.html" class="btn btn-primary btn-lg"
+          >Go to Training Page</a
+        >
+        <a href="about.html" class="btn btn-outline btn-lg ml-2">Learn More</a>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Healthcare Scheduler</h4>
+            <p>
+              Advanced optimization platform for cloud healthcare patient-doctor
+              scheduling using distributed genetic algorithms.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>📧 contact@healthscheduler.com</p>
+            <p>📱 +62 xxx xxxx xxxx</p>
+            <div class="footer-social">
+              <a href="#" title="Instagram">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="about.html">About</a></p>
+            <p><a href="training.html">Training</a></p>
+            <p><a href="reference.html">Reference</a></p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 Healthcare Scheduler Project. Cloud Healthcare
+            Optimization Research.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
