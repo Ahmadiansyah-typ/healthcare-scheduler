@@ -10,16 +10,12 @@
     <title>About - Healthcare Scheduler</title>
     <link rel="stylesheet" href="css/halodoc-theme.css" />
   </head>
-  <body>
+  <body class="page-about">
     <!-- ===== Navbar ===== -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="navbar-logo">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
-            />
-          </svg>
+          <img src="images/Logo.png" alt="Logo" style="height: 32px" />
           Healthcare Scheduler
         </a>
 
@@ -54,71 +50,69 @@
     </nav>
 
     <!-- ===== Page Header ===== -->
-    <section class="hero" style="padding: 60px 0">
+    <section class="hero" style="padding: 80px 0">
       <div class="container">
-        <h1>About the Project</h1>
-        <p>
-          Detailed information about algorithms, methodology, and research
-          objectives
-        </p>
+        <h1>Tentang Proyek</h1>
+        <p>Pelajari tentang algoritma, metode, dan tujuan penelitian</p>
       </div>
     </section>
 
-    <!-- ===== Project Overview ===== -->
+    <!-- ===== Ikhtisar Proyek ===== -->
     <section class="section">
       <div class="container">
         <div style="max-width: 900px; margin: 0 auto">
-          <h2 class="mb-3">Project Overview</h2>
+          <h2 class="mb-3">Ikhtisar Proyek</h2>
           <p>
-            This research project focuses on optimizing patient-doctor
-            scheduling in cloud healthcare environments. The primary goal is to
-            efficiently assign patients to available doctors while minimizing
-            workload imbalance across all healthcare providers.
+            Proyek penelitian ini berfokus pada optimasi penjadwalan
+            pasien-dokter di lingkungan perawatan kesehatan berbasis cloud.
+            Tujuan utamanya adalah untuk menugaskan pasien secara efisien ke
+            dokter yang tersedia sambil mengurangi ketidakseimbangan beban kerja
+            di antara semua penyedia layanan.
           </p>
           <p>
-            The problem is formulated as an optimization task where each patient
-            must be assigned to exactly one doctor, and the objective is to
-            minimize the standard deviation of total consultation times across
-            all doctors. Lower standard deviation indicates better workload
-            balance and more equitable distribution of patients.
+            Masalah ini dirumuskan sebagai tugas optimasi di mana setiap pasien
+            harus ditugaskan ke tepat satu dokter, dan tujuannya adalah untuk
+            meminimalkan standar deviasi dari total waktu konsultasi di antara
+            semua dokter. Standar deviasi yang lebih rendah menunjukkan
+            keseimbangan beban kerja yang lebih baik dan distribusi pasien yang
+            lebih merata.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ===== Problem Definition ===== -->
+    <!-- ===== Definisi Masalah ===== -->
     <section class="section bg-light">
       <div class="container">
         <div style="max-width: 900px; margin: 0 auto">
-          <h2 class="mb-3">Problem Definition</h2>
+          <h2 class="mb-3">Definisi Masalah</h2>
 
           <div class="card mb-3">
-            <h3 class="card-header">Mathematical Formulation</h3>
+            <h3 class="card-header">Formulasi Matematika</h3>
             <div class="card-body">
               <p><strong>Input:</strong></p>
               <ul style="margin-left: 20px; color: #666">
                 <li>
-                  <strong>nP</strong>: Number of patients (100, 200, 300, or
-                  400)
+                  <strong>nP</strong>: Jumlah pasien (100, 200, 300, atau 400)
                 </li>
                 <li>
-                  <strong>nD</strong>: Number of doctors (10, 20, 30, or 40)
+                  <strong>nD</strong>: Jumlah dokter (10, 20, 30, atau 40)
                 </li>
                 <li>
-                  <strong>patient_times[i]</strong>: Consultation time for
-                  patient i (random: 5-20 minutes)
+                  <strong>patient_times[i]</strong>: Waktu konsultasi pasien i
+                  (acak: 5-20 menit)
                 </li>
               </ul>
 
-              <p class="mt-3"><strong>Decision Variable:</strong></p>
+              <p class="mt-3"><strong>Variabel Keputusan:</strong></p>
               <ul style="margin-left: 20px; color: #666">
                 <li>
-                  <strong>assignment[i]</strong>: Doctor index assigned to
-                  patient i (0 to nD-1)
+                  <strong>assignment[i]</strong>: Indeks dokter yang ditugaskan
+                  ke pasien i (0 hingga nD-1)
                 </li>
               </ul>
 
-              <p class="mt-3"><strong>Objective Function (TF):</strong></p>
+              <p class="mt-3"><strong>Fungsi Tujuan (TF):</strong></p>
               <p
                 style="
                   padding: 16px;
@@ -128,35 +122,35 @@
                   margin-top: 12px;
                 "
               >
-                TF = σ(doctor_times) = Standard Deviation of [Σ patient_times[i]
-                for all patients assigned to each doctor]
+                TF = σ(doctor_times) = Standar Deviasi dari [Σ patient_times[i]
+                untuk semua pasien yang ditugaskan ke setiap dokter]
               </p>
 
               <p class="mt-3">
-                <strong>Goal:</strong> Minimize TF (lower values = better
-                balance)
+                <strong>Tujuan:</strong> Minimalkan TF (nilai lebih rendah =
+                keseimbangan lebih baik)
               </p>
             </div>
           </div>
 
           <div class="card">
-            <h3 class="card-header">Configuration Parameters</h3>
+            <h3 class="card-header">Parameter Konfigurasi</h3>
             <div class="card-body">
               <div class="grid grid-2">
                 <div>
-                  <p><strong>Generations:</strong> 100 (max iterations)</p>
-                  <p><strong>PopSize_Standard:</strong> 80 individuals</p>
-                  <p><strong>Time Range:</strong> 5-20 minutes</p>
+                  <p><strong>Generasi:</strong> 100 (maks iterasi)</p>
+                  <p><strong>PopSize_Standard:</strong> 80 individu</p>
+                  <p><strong>Rentang Waktu:</strong> 5-20 menit</p>
                 </div>
                 <div>
-                  <p><strong>MR:</strong> 0.1 (Mutation Rate)</p>
-                  <p><strong>F:</strong> 0.8 (DE scaling factor)</p>
-                  <p><strong>CR:</strong> 0.9 (Crossover Rate)</p>
+                  <p><strong>MR:</strong> 0.1 (Tingkat Mutasi)</p>
+                  <p><strong>F:</strong> 0.8 (Faktor Skala DE)</p>
+                  <p><strong>CR:</strong> 0.9 (Tingkat Crossover)</p>
                 </div>
               </div>
               <p class="mt-2">
-                <strong>DGA-specific:</strong> NSP=4 sub-populations, SPS=20 per
-                sub-pop, MI=5 (migration interval)
+                <strong>Spesifik DGA:</strong> NSP=4 sub-populasi, SPS=20 per
+                sub-populasi, MI=5 (interval migrasi)
               </p>
             </div>
           </div>
@@ -164,10 +158,10 @@
       </div>
     </section>
 
-    <!-- ===== Algorithms ===== -->
+    <!-- ===== Algoritma ===== -->
     <section class="section">
       <div class="container">
-        <h2 class="text-center mb-4">Optimization Algorithms</h2>
+        <h2 class="text-center mb-4">Algoritma Optimasi</h2>
         <div style="max-width: 900px; margin: 0 auto">
           <!-- Random Solver -->
           <div class="card mb-3">
@@ -181,25 +175,25 @@
                   border-radius: 50%;
                 "
               ></span>
-              Random Solver
+              Penyelesai Acak (Random Solver)
             </h3>
             <div class="card-body">
-              <p><strong>Type:</strong> Baseline / Stochastic Search</p>
-              <p><strong>Algorithm Flow:</strong></p>
+              <p><strong>Tipe:</strong> Dasar / Pencarian Stokastik</p>
+              <p><strong>Alur Algoritma:</strong></p>
               <ol style="margin-left: 20px; color: #666">
                 <li>
-                  Generate random assignment: each patient randomly assigned to
-                  a doctor (0 to nD-1)
+                  Hasilkan penugasan acak: setiap pasien ditugaskan ke dokter (0
+                  hingga nD-1)
                 </li>
-                <li>Calculate TF (standard deviation of doctor workloads)</li>
+                <li>Hitung TF (deviasi standar beban kerja dokter)</li>
                 <li>
-                  Repeat for specified iterations, keeping the best solution
-                  found
+                  Ulangi untuk sejumlah iterasi yang ditentukan, simpan solusi
+                  terbaik yang ditemukan
                 </li>
               </ol>
               <p>
-                <strong>Characteristics:</strong> No intelligent search, purely
-                random exploration. Serves as performance baseline.
+                <strong>Karakteristik:</strong> Tidak ada pencarian cerdas,
+                eksplorasi penuh. Digunakan sebagai dasar kinerja.
               </p>
             </div>
           </div>
@@ -216,29 +210,31 @@
                   border-radius: 50%;
                 "
               ></span>
-              Greedy Solver
+              Penyelesai Serakah (Greedy Solver)
             </h3>
             <div class="card-body">
               <p>
-                <strong>Type:</strong> Deterministic / Constructive Heuristic
+                <strong>Tipe:</strong> Deterministik / Heuristik Konstruktif
               </p>
-              <p><strong>Algorithm Flow:</strong></p>
+              <p><strong>Alur Algoritma:</strong></p>
               <ol style="margin-left: 20px; color: #666">
-                <li>Initialize all doctor loads to 0</li>
+                <li>Inisialisasi semua beban kerja dokter menjadi 0</li>
                 <li>
-                  For each patient (in order):
+                  Untuk setiap pasien (secara berurutan):
                   <ul style="margin-left: 20px">
-                    <li>Find doctor with minimum current workload</li>
-                    <li>Assign patient to that doctor</li>
-                    <li>Update doctor's workload</li>
+                    <li>
+                      Cari dokter dengan beban kerja saat ini paling minimum
+                    </li>
+                    <li>Tugaskan pasien ke dokter tersebut</li>
+                    <li>Perbarui beban kerja dokter</li>
                   </ul>
                 </li>
-                <li>Calculate final TF</li>
+                <li>Hitung TF akhir</li>
               </ol>
               <p>
-                <strong>Characteristics:</strong> Fast, deterministic (always
-                same result for same input), myopic (makes locally optimal
-                choices).
+                <strong>Karakteristik:</strong> Cepat, deterministik (selalu
+                hasil yang sama untuk input yang sama), miopik (membuat pilihan
+                optimal lokal).
               </p>
             </div>
           </div>
@@ -255,66 +251,66 @@
                   border-radius: 50%;
                 "
               ></span>
-              DE Solver (Differential Evolution)
+              Penyelesai DE (Differential Evolution)
             </h3>
             <div class="card-body">
-              <p>
-                <strong>Type:</strong> Population-based Evolutionary Algorithm
-              </p>
-              <p><strong>Algorithm Flow:</strong></p>
+              <p><strong>Tipe:</strong> Algoritma Evolusi Populasi</p>
+              <p><strong>Alur Algoritma:</strong></p>
               <ol style="margin-left: 20px; color: #666">
                 <li>
-                  <strong>Initialization:</strong> Generate 80 random
-                  individuals (assignments)
+                  <strong>Inisialisasi:</strong> Hasilkan 80 individu acak
+                  (penugasan)
                 </li>
                 <li>
-                  <strong>Evaluation:</strong> Calculate fitness (TF) for each
-                  individual
+                  <strong>Evaluasi:</strong> Hitung fitness (TF) untuk setiap
+                  individu
                 </li>
                 <li>
-                  <strong>For each generation:</strong>
+                  <strong>Untuk setiap generasi:</strong>
                   <ul style="margin-left: 20px">
                     <li>
-                      <strong>Mutation:</strong> For each target individual i:
+                      <strong>Mutasi:</strong> Untuk setiap individu target i:
                       <ul style="margin-left: 20px">
-                        <li>
-                          Select two random individuals r1, r2 (different from
-                          i)
-                        </li>
-                        <li>Create mutant vector: best + F × (r1 - r2)</li>
-                        <li>F = 0.8 (scaling factor)</li>
+                        <li>Pilih dua individu acak r1, r2 (berbeda dari i)</li>
+                        <li>Buat vektor mutan: best + F × (r1 - r2)</li>
+                        <li>F = 0.8 (faktor skala)</li>
                       </ul>
                     </li>
                     <li>
                       <strong>Crossover:</strong>
                       <ul style="margin-left: 20px">
                         <li>
-                          Combine target and mutant using crossover rate CR =
-                          0.9
+                          Gabungkan target dan mutan menggunakan tingkat
+                          crossover CR = 0.9
                         </li>
                         <li>
-                          For each gene: use mutant gene with probability CR,
-                          else use target gene
+                          Untuk setiap gen: gunakan gen mutan dengan
+                          probabilitas CR, jika tidak gunakan gen target
                         </li>
-                        <li>Discretize result (round to valid doctor index)</li>
+                        <li>
+                          Diskritkan hasilnya (bulatkan ke indeks dokter yang
+                          valid)
+                        </li>
                       </ul>
                     </li>
                     <li>
-                      <strong>Selection:</strong>
+                      <strong>Seleksi:</strong>
                       <ul style="margin-left: 20px">
                         <li>
-                          If trial fitness ≤ target fitness: replace target with
-                          trial
+                          Jika fitness percobaan ≤ fitness target: ganti target
+                          dengan percobaan
                         </li>
-                        <li>Update global best if improved</li>
+                        <li>
+                          Perbarui solusi terbaik global jika ada peningkatan
+                        </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li>Return best solution found</li>
+                <li>Kembalikan solusi terbaik yang ditemukan</li>
               </ol>
               <p>
-                <strong>Parameters:</strong> PopSize=80, F=0.8, CR=0.9,
+                <strong>Parameter:</strong> PopSize=80, F=0.8, CR=0.9,
                 Generations=100
               </p>
             </div>
@@ -332,61 +328,57 @@
                   border-radius: 50%;
                 "
               ></span>
-              GA Solver (Genetic Algorithm)
+              Penyelesai GA (Genetic Algorithm)
             </h3>
             <div class="card-body">
-              <p>
-                <strong>Type:</strong> Population-based Evolutionary Algorithm
-              </p>
-              <p><strong>Algorithm Flow:</strong></p>
+              <p><strong>Tipe:</strong> Algoritma Evolusi Populasi</p>
+              <p><strong>Alur Algoritma:</strong></p>
               <ol style="margin-left: 20px; color: #666">
+                <li><strong>Inisialisasi:</strong> Buat 80 individu acak</li>
                 <li>
-                  <strong>Initialization:</strong> Generate 80 random
-                  individuals
+                  <strong>Evaluasi:</strong> Hitung fitness untuk setiap
+                  individu
                 </li>
                 <li>
-                  <strong>Evaluation:</strong> Calculate fitness for each
-                  individual
-                </li>
-                <li>
-                  <strong>For each generation:</strong>
+                  <strong>Untuk setiap generasi:</strong>
                   <ul style="margin-left: 20px">
                     <li>
-                      <strong>Tournament Selection:</strong>
+                      <strong>Seleksi Turnamen:</strong>
                       <ul style="margin-left: 20px">
-                        <li>Randomly select 2 individuals</li>
-                        <li>Choose the one with better fitness as parent</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <strong>Reproduction:</strong> Create child by copying
-                      parent genes
-                    </li>
-                    <li>
-                      <strong>Mutation:</strong>
-                      <ul style="margin-left: 20px">
+                        <li>Pilih 2 individu secara acak</li>
                         <li>
-                          With probability MR = 0.1: randomly change one gene to
-                          a random doctor
+                          Pilih yang lebih baik dari setiap pasang sebagai induk
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <strong>Evaluation:</strong> Calculate child fitness
+                      <strong>Reproduksi:</strong> Buat anak dengan secara acak
+                      memilih gen dari induk 1 atau induk 2 (probabilitas 50%
+                      masing-masing)
                     </li>
-                    <li>Repeat to create new population of 80 individuals</li>
+                    <li>
+                      <strong>Mutasi:</strong>
+                      <ul style="margin-left: 20px">
+                        <li>
+                          Dengan probabilitas MR = 0.1: acak perubahan satu gen
+                          ke dokter acak
+                        </li>
+                      </ul>
+                    </li>
+                    <li><strong>Evaluasi:</strong> Hitung fitness anak</li>
+                    <li>Ulangi untuk membuat populasi baru dari 80 individu</li>
                   </ul>
                 </li>
-                <li>Track and return global best across all generations</li>
+                <li>Lacak dan kembalikan solusi terbaik global</li>
               </ol>
               <p>
-                <strong>Parameters:</strong> PopSize=80, MR=0.1, Generations=100
+                <strong>Parameter:</strong> PopSize=80, MR=0.1, Generations=100
               </p>
             </div>
           </div>
 
           <!-- DGA Solver -->
-          <div class="card" style="border: 2px solid #d8122a">
+          <div class="card" style="border: 2px solid #5dade2">
             <h3
               class="card-header flex text-red"
               style="align-items: center; gap: 12px"
@@ -400,91 +392,90 @@
                   border-radius: 50%;
                 "
               ></span>
-              DGA Solver (Distributed Genetic Algorithm)
+              Penyelesai DGA (Distributed Genetic Algorithm)
             </h3>
             <div class="card-body">
               <p>
-                <strong>Type:</strong> Distributed Population-based Evolutionary
-                Algorithm
+                <strong>Tipe:</strong> Algoritma Evolusi Populasi Terdistribusi
               </p>
-              <p><strong>Algorithm Flow:</strong></p>
+              <p><strong>Alur Algoritma:</strong></p>
               <ol style="margin-left: 20px; color: #666">
                 <li>
-                  <strong>Initialization:</strong> Create 4 sub-populations
-                  (NSP=4), each with 20 individuals (SPS=20)
+                  <strong>Inisialisasi:</strong> Buat 4 sub-populasi (NSP=4),
+                  masing-masing dengan 20 individu (SPS=20)
                 </li>
                 <li>
-                  <strong>Evaluation:</strong> Calculate fitness for all
-                  individuals in all sub-populations
+                  <strong>Evaluasi:</strong> Hitung fitness untuk semua individu
+                  di semua sub-populasi
                 </li>
                 <li>
-                  <strong>For each generation:</strong>
+                  <strong>Untuk setiap generasi:</strong>
                   <ul style="margin-left: 20px">
                     <li>
                       <strong
-                        >Local Evolution (for each sub-population
-                        independently):</strong
+                        >Evolusi Lokal (untuk setiap sub-populasi
+                        independen):</strong
                       >
                       <ul style="margin-left: 20px">
                         <li>
-                          <strong>Tournament Selection:</strong> Select 2 pairs
-                          of individuals, choose better from each pair as
-                          parents (2 parents total)
+                          <strong>Seleksi Turnamen:</strong> Pilih 2 pasang
+                          individu, pilih yang lebih baik dari setiap pasang
+                          sebagai induk (total 2 induk)
                         </li>
                         <li>
-                          <strong>Crossover:</strong> Create child by randomly
-                          selecting genes from parent 1 or parent 2 (50%
-                          probability each)
+                          <strong>Crossover:</strong> Buat anak dengan secara
+                          acak memilih gen dari induk 1 atau induk 2
+                          (probabilitas 50% masing-masing)
                         </li>
                         <li>
-                          <strong>Mutation:</strong> With probability MR=0.1,
-                          randomly change one gene
+                          <strong>Mutasi:</strong> Dengan probabilitas MR=0.1,
+                          acak perubahan satu gen
                         </li>
+                        <li><strong>Evaluasi:</strong> Hitung fitness anak</li>
                         <li>
-                          <strong>Evaluation:</strong> Calculate child fitness
-                        </li>
-                        <li>
-                          Repeat to create new sub-population of 20 individuals
+                          Ulangi untuk membuat sub-populasi baru dari 20
+                          individu
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <strong>Migration (every MI=5 generations):</strong>
+                      <strong>Migrasi (setiap MI=5 generasi):</strong>
                       <ul style="margin-left: 20px">
                         <li>
-                          Extract best individual (elite) from each
-                          sub-population
+                          Ekstrak individu terbaik (elite) dari setiap
+                          sub-populasi
                         </li>
                         <li>
-                          Send each elite to the next sub-population (circular:
-                          0→1→2→3→0)
+                          Kirim setiap elite ke sub-populasi berikutnya
+                          (berurutan: 0→1→2→3→0)
                         </li>
                         <li>
-                          Replace a random non-best individual in target
-                          sub-population with incoming elite
+                          Ganti individu acak yang bukan terbaik di sub-populasi
+                          target dengan elite yang masuk
                         </li>
                         <li>
-                          <strong>Purpose:</strong> Share good solutions between
-                          sub-populations, maintain diversity
+                          <strong>Tujuan:</strong> Membagikan solusi yang baik
+                          antar sub-populasi, mempertahankan diversitas
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <strong>Global Best Update:</strong> Find best individual
-                      across all sub-populations
+                      <strong>Pembaruan Terbaik Global:</strong> Temukan
+                      individu terbaik di semua sub-populasi
                     </li>
                   </ul>
                 </li>
-                <li>Return global best solution</li>
+                <li>Kembalikan solusi terbaik global</li>
               </ol>
               <p>
-                <strong>Parameters:</strong> NSP=4, SPS=20, MR=0.1, MI=5,
+                <strong>Parameter:</strong> NSP=4, SPS=20, MR=0.1, MI=5,
                 Generations=100
               </p>
               <p class="mt-2">
-                <strong>Advantages:</strong> Parallel evolution maintains
-                diversity, migration mechanism facilitates knowledge sharing,
-                typically outperforms standard GA on complex problems.
+                <strong>Keuntungan:</strong> Evolusi paralel mempertahankan
+                diversitas, mekanisme migrasi memfasilitasi pembagian
+                pengetahuan, biasanya mengungguli GA standar pada masalah
+                kompleks.
               </p>
             </div>
           </div>
@@ -492,57 +483,59 @@
       </div>
     </section>
 
-    <!-- ===== Research Objectives ===== -->
+    <!-- ===== Tujuan Penelitian ===== -->
     <section class="section bg-light">
       <div class="container">
         <div style="max-width: 900px; margin: 0 auto">
-          <h2 class="mb-3">Research Objectives</h2>
+          <h2 class="mb-3">Tujuan Penelitian</h2>
 
           <div class="grid grid-2">
             <div class="card">
-              <h3 class="card-header">Primary Objective</h3>
+              <h3 class="card-header">Tujuan Utama</h3>
               <div class="card-body">
                 <p>
-                  Compare the effectiveness of five optimization algorithms
-                  (Random, Greedy, DE, GA, DGA) on cloud healthcare
-                  patient-doctor scheduling across 16 test instances (T1-T16)
-                  with varying problem scales.
+                  Membandingkan efektivitas lima algoritma optimasi (Random,
+                  Greedy, DE, GA, DGA) pada penjadwalan pasien-dokter layanan
+                  kesehatan berbasis cloud di 16 instans uji (T1-T16) dengan
+                  skala masalah yang bervariasi.
                 </p>
               </div>
             </div>
 
             <div class="card">
-              <h3 class="card-header">Expected Outcomes</h3>
+              <h3 class="card-header">Hasil yang Diharapkan</h3>
               <div class="card-body">
                 <p>
-                  Demonstrate that DGA (Distributed Genetic Algorithm) achieves
-                  superior performance in terms of solution quality (lower TF
-                  values) and consistency across different problem instances.
+                  Menunjukkan bahwa DGA (Distributed Genetic Algorithm) mencapai
+                  kinerja superior dalam hal kualitas solusi (nilai TF yang
+                  lebih rendah) dan konsistensi di berbagai instans masalah.
                 </p>
               </div>
             </div>
           </div>
 
           <div class="card mt-3">
-            <h3 class="card-header">Evaluation Metrics</h3>
+            <h3 class="card-header">Metrik Evaluasi</h3>
             <div class="card-body">
-              <p><strong>Performance Measures:</strong></p>
+              <p><strong>Ukuran Kinerja:</strong></p>
               <ul style="margin-left: 20px; color: #666">
                 <li>
-                  <strong>Average TF:</strong> Mean objective function value
-                  over multiple runs (lower is better)
+                  <strong>Rata-rata TF:</strong> Nilai fungsi objektif rata-rata
+                  selama beberapa kali percobaan (lebih rendah lebih baik)
                 </li>
                 <li>
-                  <strong>Standard Deviation:</strong> Consistency of results
-                  across runs (lower indicates more stable algorithm)
+                  <strong>Deviasi Standar:</strong> Konsistensi hasil antar
+                  percobaan (lebih rendah menunjukkan algoritma yang lebih
+                  stabil)
                 </li>
                 <li>
-                  <strong>Convergence Speed:</strong> How quickly the algorithm
-                  reaches good solutions (visualized in convergence graphs)
+                  <strong>Kecepatan Konvergensi:</strong> Seberapa cepat
+                  algoritma mencapai solusi yang baik (divisualisasikan dalam
+                  grafik konvergensi)
                 </li>
                 <li>
-                  <strong>Scalability:</strong> Performance on different problem
-                  sizes (100-400 patients, 10-40 doctors)
+                  <strong>Skalabilitas:</strong> Kinerja pada ukuran masalah
+                  yang berbeda (100-400 pasien, 10-40 dokter)
                 </li>
               </ul>
             </div>
@@ -558,13 +551,13 @@
           <div class="footer-section">
             <h4>Healthcare Scheduler</h4>
             <p>
-              Advanced optimization platform for cloud healthcare patient-doctor
-              scheduling using distributed genetic algorithms.
+              Optimasi penjadwalan pasien-dokter menggunakan algoritma genetik
+              dan teknik optimasi evolusi.
             </p>
           </div>
 
           <div class="footer-section">
-            <h4>Contact</h4>
+            <h4>Kontak</h4>
             <p>📧 contact@healthscheduler.com</p>
             <p>📱 +62 xxx xxxx xxxx</p>
             <div class="footer-social">
@@ -592,10 +585,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>
-            &copy; 2025 Healthcare Scheduler Project. Cloud Healthcare
-            Optimization Research.
-          </p>
+          <p>&copy; 2025 Healthcare Scheduler Project.</p>
         </div>
       </div>
     </footer>

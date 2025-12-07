@@ -1,26 +1,41 @@
 /* =====================================================
-   Halodoc-Themed CSS for Healthcare Scheduler
-   Colors: Red #D8122A, White #FFFFFF, Gray #F5F5F5
+   Light Medical Blue - Soft & Clean Theme
+   Baby Blue #87CEEB → Sky Blue #A7D8F0 → Powder Blue #B0E0E6
+   Fresh, Clean, Soft Medical Aesthetic
    ===================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
-/* ===== CSS Variables ===== */
+/* ===== CSS Variables - Light Blue Theme ===== */
 :root {
-  --halodoc-red: #d8122a;
-  --halodoc-red-dark: #b50f22;
-  --halodoc-red-light: #ff6b6b;
+  /* Primary Light Blues */
+  --halodoc-red: #87CEEB;
+  --halodoc-red-dark: #5DADE2;
+  --halodoc-red-light: #B0E0E6;
+  
+  /* Backgrounds */
   --white: #ffffff;
-  --gray-light: #f5f5f5;
-  --gray-medium: #e0e0e0;
-  --gray-text: #666666;
-  --gray-dark: #333333;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --border-radius: 12px;
-  --border-radius-sm: 8px;
-  --transition: all 0.3s ease;
+  --gray-light: #F0F8FF;
+  --gray-medium: #E0F2FF;
+  --gray-text: #607D8B;
+  --gray-dark: #37474F;
+  
+  /* Modern Shadows with Light Blue Tint */
+  --shadow-sm: 0 2px 12px rgba(135, 206, 235, 0.12);
+  --shadow-md: 0 4px 24px rgba(135, 206, 235, 0.16);
+  --shadow-lg: 0 8px 40px rgba(135, 206, 235, 0.20);
+  --shadow-3d: 0 12px 48px rgba(176, 224, 230, 0.28), 
+               0 4px 16px rgba(135, 206, 235, 0.18);
+  
+  /* Gradients - Soft & Light */
+  --gradient-primary: linear-gradient(135deg, #B0E0E6 0%, #87CEEB 50%, #5DADE2 100%);
+  --gradient-light: linear-gradient(135deg, #F0F8FF 0%, #E0F2FF 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #F0F8FF 100%);
+  
+  /* Modern Settings */
+  --border-radius: 16px;
+  --border-radius-sm: 10px;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== Global Styles ===== */
@@ -34,7 +49,7 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   color: var(--gray-dark);
-  background-color: var(--white);
+  background: #ffffff;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -87,11 +102,15 @@ a {
 }
 
 .section {
-  padding: 80px 0;
+  padding: 60px 0;
 }
 
 .section-sm {
   padding: 40px 0;
+}
+
+.bg-light {
+  background: linear-gradient(180deg, #F0F8FF 0%, #ffffff 100%);
 }
 
 /* ===== Navbar ===== */
@@ -247,16 +266,25 @@ a {
 
 /* ===== Cards ===== */
 .card {
-  background: var(--white);
+  background: linear-gradient(145deg, #ffffff 0%, #F0F8FF 100%);
+  border: 2px solid #E0F2FF;
   border-radius: var(--border-radius);
   padding: 24px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px rgba(135, 206, 235, 0.15), 
+              0 2px 8px rgba(135, 206, 235, 0.1);
   transition: var(--transition);
+  position: relative;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 32px rgba(135, 206, 235, 0.25), 
+              0 4px 16px rgba(135, 206, 235, 0.15);
   transform: translateY(-4px);
+  border-color: #87CEEB;
+}
+
+.mb-3 {
+  margin-bottom: 30px;
 }
 
 .card-header {
@@ -414,37 +442,6 @@ a {
   padding-top: 20px;
   border-top: 1px solid var(--gray-medium);
   color: var(--gray-text);
-  font-size: 0.9rem;
-}
-
-/* ===== Hero Section ===== */
-.hero {
-  background: linear-gradient(
-    135deg,
-    var(--halodoc-red) 0%,
-    var(--halodoc-red-dark) 100%
-  );
-  color: var(--white);
-  padding: 100px 0;
-  text-align: center;
-}
-
-.hero h1 {
-  color: var(--white);
-  margin-bottom: 20px;
-  font-size: 3rem;
-}
-
-.hero p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto 30px;
-}
-
-/* ===== Table ===== */
-.table-container {
-  overflow-x: auto;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-sm);
 }
@@ -663,7 +660,6 @@ a {
 
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 30px;
   }
 
   .section {
@@ -692,4 +688,93 @@ a {
     padding: 14px 32px;
     font-size: 1rem;
   }
+}
+
+/* ===== Hero Section with Background Image ===== */
+.hero {
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.9) 0%, rgba(93, 173, 226, 0.75) 50%, rgba(255, 255, 255, 0.85) 100%),
+    url('../images/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 120px 0;
+  text-align: center;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(135, 206, 235, 0.2) 0%, rgba(93, 173, 226, 0.1) 100%);
+  pointer-events: none;
+}
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--white);
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  color: var(--white);
+  opacity: 0.98;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hero .btn {
+  margin: 0 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Page-Specific Hero Backgrounds ===== */
+.page-home .hero {
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.9) 0%, rgba(93, 173, 226, 0.75) 50%, rgba(255, 255, 255, 0.85) 100%),
+    url('../images/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.page-about .hero {
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.9) 0%, rgba(93, 173, 226, 0.75) 50%, rgba(255, 255, 255, 0.85) 100%),
+    url('../images/about-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.page-training .hero {
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.9) 0%, rgba(93, 173, 226, 0.75) 50%, rgba(255, 255, 255, 0.85) 100%),
+    url('../images/training-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.page-reference .hero {
+  background:
+    linear-gradient(135deg, rgba(135, 206, 235, 0.9) 0%, rgba(93, 173, 226, 0.75) 50%, rgba(255, 255, 255, 0.85) 100%),
+    url('../images/reference-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }

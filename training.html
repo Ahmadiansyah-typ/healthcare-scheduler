@@ -11,16 +11,12 @@
     <link rel="stylesheet" href="css/halodoc-theme.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
-  <body>
+  <body class="page-training">
     <!-- ===== Navbar ===== -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="navbar-logo">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
-            />
-          </svg>
+          <img src="images/Logo.png" alt="Logo" style="height: 32px" />
           Healthcare Scheduler
         </a>
 
@@ -55,10 +51,10 @@
     </nav>
 
     <!-- ===== Page Header ===== -->
-    <section class="hero" style="padding: 50px 0">
+    <section class="hero" style="padding: 80px 0">
       <div class="container">
-        <h1>Training & Simulation</h1>
-        <p>Configure parameters and run optimization simulations</p>
+        <h1>Pelatihan & Simulasi</h1>
+        <p>Konfigurasi parameter dan simulasi optimasi</p>
       </div>
     </section>
 
@@ -67,12 +63,12 @@
       <div class="container">
         <div style="max-width: 1000px; margin: 0 auto">
           <div class="card">
-            <h2 class="card-header">Simulation Configuration</h2>
+            <h2 class="card-header">Konfigurasi Simulasi</h2>
             <div class="card-body">
               <form id="simulationForm">
                 <!-- Algorithm Selection -->
                 <div class="form-group">
-                  <label class="form-label">Select Algorithms to Compare</label>
+                  <label class="form-label">Pilih Algoritma</label>
                   <div class="grid grid-3" style="gap: 12px">
                     <label class="form-checkbox">
                       <input
@@ -126,7 +122,7 @@
                 <div class="grid grid-2">
                   <div class="form-group">
                     <label class="form-label" for="generations"
-                      >Number of Generations</label
+                      >Jumlah Generasi</label
                     >
                     <input
                       type="number"
@@ -138,13 +134,13 @@
                       step="10"
                     />
                     <small style="color: #666"
-                      >Default: 100 (recommended range: 10-500)</small
+                      >Default: 100 (rekomendasi rentang: 10-500)</small
                     >
                   </div>
 
                   <!-- Number of Runs -->
                   <div class="form-group">
-                    <label class="form-label" for="runs">Number of Runs</label>
+                    <label class="form-label" for="runs">Jumlah Iterasi</label>
                     <input
                       type="number"
                       id="runs"
@@ -154,67 +150,301 @@
                       max="30"
                     />
                     <small style="color: #666"
-                      >Each algorithm runs multiple times for statistical
-                      analysis</small
+                      >Setiap algoritma dijalankan beberapa kali untuk analisis
+                      statistik</small
                     >
                   </div>
                 </div>
 
-                <!-- Scenario Selection -->
+                <!-- Run Mode Selection -->
                 <div class="form-group">
-                  <label class="form-label" for="scenario"
-                    >Test Instance (Scenario)</label
+                  <label class="form-label">Mode Eksekusi</label>
+                  <div
+                    class="grid grid-2"
+                    style="gap: 12px; margin-bottom: 8px"
                   >
-                  <select id="scenario" class="form-select">
-                    <option value="T1">
-                      T1 - 100 patients, 10 doctors (Small)
-                    </option>
-                    <option value="T2">
-                      T2 - 100 patients, 20 doctors (Small)
-                    </option>
-                    <option value="T3">
-                      T3 - 100 patients, 30 doctors (Small)
-                    </option>
-                    <option value="T4">
-                      T4 - 100 patients, 40 doctors (Small)
-                    </option>
-                    <option value="T5" selected>
-                      T5 - 200 patients, 10 doctors (Medium)
-                    </option>
-                    <option value="T6">
-                      T6 - 200 patients, 20 doctors (Medium)
-                    </option>
-                    <option value="T7">
-                      T7 - 200 patients, 30 doctors (Medium)
-                    </option>
-                    <option value="T8">
-                      T8 - 200 patients, 40 doctors (Medium)
-                    </option>
-                    <option value="T9">
-                      T9 - 300 patients, 10 doctors (Large)
-                    </option>
-                    <option value="T10">
-                      T10 - 300 patients, 20 doctors (Large)
-                    </option>
-                    <option value="T11">
-                      T11 - 300 patients, 30 doctors (Large)
-                    </option>
-                    <option value="T12">
-                      T12 - 300 patients, 40 doctors (Large)
-                    </option>
-                    <option value="T13">
-                      T13 - 400 patients, 10 doctors (Very Large)
-                    </option>
-                    <option value="T14">
-                      T14 - 400 patients, 20 doctors (Very Large)
-                    </option>
-                    <option value="T15">
-                      T15 - 400 patients, 30 doctors (Very Large)
-                    </option>
-                    <option value="T16">
-                      T16 - 400 patients, 40 doctors (Very Large)
-                    </option>
-                  </select>
+                    <label class="form-checkbox">
+                      <input
+                        type="radio"
+                        name="runMode"
+                        value="single"
+                        checked
+                        onchange="toggleRunMode()"
+                      />
+                      <span>Instance Tunggal</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="radio"
+                        name="runMode"
+                        value="batch"
+                        onchange="toggleRunMode()"
+                      />
+                      <span> Batch Semua (T1-T16)</span>
+                    </label>
+                  </div>
+                  <small style="color: #666; display: block; margin-top: 8px"
+                    >Mode batch menggabungkan semua instance</small
+                  >
+                </div>
+
+                <!-- Batch Scenario Selection (Hidden by default) -->
+                <div class="form-group hidden" id="batchScenarioGroup">
+                  <label class="form-label"
+                    >Pilih Instance Uji untuk Dijalankan</label
+                  >
+                  <div class="grid grid-4" style="gap: 8px">
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T1" />
+                      <span style="font-size: 0.9rem">T1 (100P×10D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T2" />
+                      <span style="font-size: 0.9rem">T2 (100P×20D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T3" />
+                      <span style="font-size: 0.9rem">T3 (100P×30D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T4" />
+                      <span style="font-size: 0.9rem">T4 (100P×40D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T5"
+                        checked
+                      />
+                      <span style="font-size: 0.9rem">T5 (200P×10D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T6" />
+                      <span style="font-size: 0.9rem">T6 (200P×20D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T7" />
+                      <span style="font-size: 0.9rem">T7 (200P×30D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T8" />
+                      <span style="font-size: 0.9rem">T8 (200P×40D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input type="checkbox" name="batchScenarios" value="T9" />
+                      <span style="font-size: 0.9rem">T9 (300P×10D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T10"
+                        checked
+                      />
+                      <span style="font-size: 0.9rem">T10 (300P×20D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T11"
+                      />
+                      <span style="font-size: 0.9rem">T11 (300P×30D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T12"
+                      />
+                      <span style="font-size: 0.9rem">T12 (300P×40D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T13"
+                      />
+                      <span style="font-size: 0.9rem">T13 (400P×10D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T14"
+                      />
+                      <span style="font-size: 0.9rem">T14 (400P×20D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T15"
+                        checked
+                      />
+                      <span style="font-size: 0.9rem">T15 (400P×30D)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="checkbox"
+                        name="batchScenarios"
+                        value="T16"
+                        checked
+                      />
+                      <span style="font-size: 0.9rem">T16 (400P×40D)</span>
+                    </label>
+                  </div>
+                  <small style="color: #666; display: block; margin-top: 8px"
+                    >Pilih minimal 1 skenario. Default: T5, T10, T15, T16 (4
+                    skenario)</small
+                  >
+                </div>
+
+                <!-- Scenario Selection -->
+                <div class="form-group" id="scenarioSelectionGroup">
+                  <label class="form-label" for="scenario"
+                    >Instance Uji (Skenario)</label
+                  >
+
+                  <!-- Scenario Type Toggle -->
+                  <div
+                    class="grid grid-2"
+                    style="gap: 12px; margin-bottom: 16px"
+                  >
+                    <label class="form-checkbox">
+                      <input
+                        type="radio"
+                        name="scenarioType"
+                        value="predefined"
+                        checked
+                        onchange="toggleScenarioInputs()"
+                      />
+                      <span>Telah Ditentukan (T1-T16)</span>
+                    </label>
+                    <label class="form-checkbox">
+                      <input
+                        type="radio"
+                        name="scenarioType"
+                        value="custom"
+                        onchange="toggleScenarioInputs()"
+                      />
+                      <span>Skenario Kustom</span>
+                    </label>
+                  </div>
+
+                  <!-- Predefined Scenario Dropdown -->
+                  <div id="predefinedScenarioContainer">
+                    <select id="scenario" class="form-select">
+                      <option value="T1">
+                        T1 - 100 pasien, 10 dokter (Kecil)
+                      </option>
+                      <option value="T2">
+                        T2 - 100 pasien, 20 dokter (Kecil)
+                      </option>
+                      <option value="T3">
+                        T3 - 100 pasien, 30 dokter (Kecil)
+                      </option>
+                      <option value="T4">
+                        T4 - 100 pasien, 40 dokter (Kecil)
+                      </option>
+                      <option value="T5" selected>
+                        T5 - 200 pasien, 10 dokter (Sedang)
+                      </option>
+                      <option value="T6">
+                        T6 - 200 pasien, 20 dokter (Sedang)
+                      </option>
+                      <option value="T7">
+                        T7 - 200 pasien, 30 dokter (Sedang)
+                      </option>
+                      <option value="T8">
+                        T8 - 200 pasien, 40 dokter (Sedang)
+                      </option>
+                      <option value="T9">
+                        T9 - 300 pasien, 10 dokter (Besar)
+                      </option>
+                      <option value="T10">
+                        T10 - 300 pasien, 20 dokter (Besar)
+                      </option>
+                      <option value="T11">
+                        T11 - 300 pasien, 30 dokter (Besar)
+                      </option>
+                      <option value="T12">
+                        T12 - 300 pasien, 40 dokter (Besar)
+                      </option>
+                      <option value="T13">
+                        T13 - 400 pasien, 10 dokter (Sangat Besar)
+                      </option>
+                      <option value="T14">
+                        T14 - 400 pasien, 20 dokter (Sangat Besar)
+                      </option>
+                      <option value="T15">
+                        T15 - 400 pasien, 30 dokter (Sangat Besar)
+                      </option>
+                      <option value="T16">
+                        T16 - 400 pasien, 40 dokter (Sangat Besar)
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- Custom Scenario Inputs -->
+                  <div id="customScenarioContainer" class="hidden">
+                    <div class="grid grid-3" style="gap: 12px">
+                      <div>
+                        <label
+                          class="form-label"
+                          for="customPatients"
+                          style="font-size: 0.9rem; margin-bottom: 6px"
+                          >Jumlah Pasien (nP)</label
+                        >
+                        <input
+                          type="number"
+                          id="customPatients"
+                          class="form-input"
+                          value="150"
+                          min="10"
+                          max="1000"
+                          step="10"
+                        />
+                        <small style="color: #666">Range: 10-1000</small>
+                      </div>
+                      <div>
+                        <label
+                          class="form-label"
+                          for="customDoctors"
+                          style="font-size: 0.9rem; margin-bottom: 6px"
+                          >Number of Doctors (nD)</label
+                        >
+                        <input
+                          type="number"
+                          id="customDoctors"
+                          class="form-input"
+                          value="15"
+                          min="1"
+                          max="100"
+                        />
+                        <small style="color: #666">Rentang: 1-100</small>
+                      </div>
+                      <div>
+                        <label
+                          class="form-label"
+                          for="customComplexity"
+                          style="font-size: 0.9rem; margin-bottom: 6px"
+                          >Kompleksitas Waktu</label
+                        >
+                        <select id="customComplexity" class="form-select">
+                          <option value="low">Low (5-10 min)</option>
+                          <option value="medium" selected>
+                            Medium (5-20 min)
+                          </option>
+                          <option value="high">High (10-30 min)</option>
+                        </select>
+                        <small style="color: #666"
+                          >Rentang waktu konsultasi</small
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Submit Button -->
@@ -223,7 +453,7 @@
                   class="btn btn-primary btn-lg"
                   style="width: 100%; margin-top: 16px"
                 >
-                  <span id="btnText">Run Simulation</span>
+                  <span id="btnText">Mulai Simulasi</span>
                 </button>
               </form>
             </div>
@@ -237,7 +467,7 @@
           >
             <div class="spinner"></div>
             <p style="color: #666; margin-top: 16px">
-              Running simulation... This may take a moment.
+              Menghitung... Ini mungkin memerlukan beberapa detik.
             </p>
           </div>
 
@@ -245,7 +475,7 @@
           <div id="resultsSection" class="hidden" style="margin-top: 40px">
             <!-- Summary Stats -->
             <div class="card mb-3">
-              <h2 class="card-header">Simulation Results</h2>
+              <h2 class="card-header">Hasil Simulasi</h2>
               <div class="card-body">
                 <p id="resultsSummary" style="color: #666"></p>
               </div>
@@ -253,16 +483,16 @@
 
             <!-- Results Table -->
             <div class="card mb-3">
-              <h3 class="card-header">Performance Summary</h3>
+              <h3 class="card-header">Ringkasan Performa</h3>
               <div class="card-body">
                 <div class="table-container">
                   <table class="table" id="resultsTable">
                     <thead>
                       <tr>
-                        <th>Algorithm</th>
-                        <th>Average TF</th>
+                        <th>Algoritma</th>
+                        <th>Rata-rata TF</th>
                         <th>Std Dev</th>
-                        <th>Best TF</th>
+                        <th>TF Terbaik</th>
                       </tr>
                     </thead>
                     <tbody id="resultsTableBody">
@@ -275,10 +505,64 @@
 
             <!-- Convergence Chart -->
             <div class="card">
-              <h3 class="card-header">Convergence Graph</h3>
+              <h3 class="card-header">Grafik Konvergensi</h3>
               <div class="card-body">
                 <canvas id="convergenceChart"></canvas>
               </div>
+            </div>
+          </div>
+
+          <!-- Batch Results Section -->
+          <div id="batchResultsSection" class="hidden" style="margin-top: 40px">
+            <div class="card">
+              <h2 class="card-header">
+                Hasil Simulasi Batch - Semua Instance Uji (T1-T16)
+              </h2>
+              <div class="card-body">
+                <p
+                  id="batchSummary"
+                  style="color: #666; margin-bottom: 20px"
+                ></p>
+                <div class="table-container">
+                  <table class="table" id="batchResultsTable">
+                    <thead>
+                      <tr>
+                        <th>Instance</th>
+                        <th>nP</th>
+                        <th>nD</th>
+                        <th>Acak</th>
+                        <th>Greedy</th>
+                        <th>DE</th>
+                        <th>GA</th>
+                        <th>DGA</th>
+                      </tr>
+                    </thead>
+                    <tbody id="batchResultsTableBody">
+                      <!-- Batch results populated by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Batch Convergence Charts - Multiple charts per scenario -->
+          <div
+            id="batchConvergenceSection"
+            class="card hidden"
+            style="margin-top: 30px"
+          >
+            <h3 class="card-header">
+              Perbandingan Konvergensi per Test Instance
+            </h3>
+            <div class="card-body">
+              <div
+                id="batchConvergenceContainer"
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                  gap: 20px;
+                "
+              ></div>
             </div>
           </div>
         </div>
@@ -292,13 +576,13 @@
           <div class="footer-section">
             <h4>Healthcare Scheduler</h4>
             <p>
-              Advanced optimization platform for cloud healthcare patient-doctor
-              scheduling using distributed genetic algorithms.
+              Optimasi penjadwalan pasien-dokter menggunakan algoritma genetik
+              dan teknik optimasi evolusi.
             </p>
           </div>
 
           <div class="footer-section">
-            <h4>Contact</h4>
+            <h4>Kontak</h4>
             <p>📧 contact@healthscheduler.com</p>
             <p>📱 +62 xxx xxxx xxxx</p>
             <div class="footer-social">
@@ -327,10 +611,7 @@
         </div>
 
         <div class="footer-bottom">
-          <p>
-            &copy; 2025 Healthcare Scheduler Project. Cloud Healthcare
-            Optimization Research.
-          </p>
+          <p>&copy; 2025 Healthcare Scheduler Project.</p>
         </div>
       </div>
     </footer>

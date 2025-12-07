@@ -69,15 +69,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // === Navbar Shadow on Scroll ===
+  // === Navbar Auto-Hide on Scroll ===
   const navbar = document.querySelector(".navbar");
   if (navbar) {
+    let lastScrollTop = 0;
+    let scrollThreshold = 5; // Minimum scroll distance to trigger
+    
     window.addEventListener("scroll", function () {
-      if (window.scrollY > 50) {
+      let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Add shadow when scrolled
+      if (currentScroll > 50) {
         navbar.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
       } else {
         navbar.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.08)";
       }
+      
+      // Hide navbar on scroll down, show on scroll up
+      if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
+        return; // Ignore small scrolls
+      }
+      
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        // Scrolling DOWN - hide navbar
+        navbar.style.transform = "translateY(-100%)";
+        navbar.style.transition = "transform 0.3s ease-in-out";
+      } else {
+        // Scrolling UP - show navbar
+        navbar.style.transform = "translateY(0)";
+        navbar.style.transition = "transform 0.3s ease-in-out";
+      }
+      
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
   }
 

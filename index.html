@@ -10,16 +10,12 @@
     <title>Healthcare Scheduler - Cloud Optimization Platform</title>
     <link rel="stylesheet" href="css/halodoc-theme.css" />
   </head>
-  <body>
+  <body class="page-home">
     <!-- ===== Navbar ===== -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="navbar-logo">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"
-            />
-          </svg>
+          <img src="images/Logo.png" alt="Logo" style="height: 32px" />
           Healthcare Scheduler
         </a>
 
@@ -54,18 +50,18 @@
     </nav>
 
     <!-- ===== Hero Section ===== -->
-    <section class="hero">
+    <section class="hero" style="padding: 80px 0">
       <div class="container">
-        <h1>Cloud Healthcare Scheduling Optimization</h1>
+        <h1>Healthcare Scheduling Optimization</h1>
         <p>
-          Advanced patient-doctor assignment using distributed genetic
-          algorithms and evolutionary optimization techniques
+          Optimasi penugasan pasien-dokter menggunakan algoritma genetik dan
+          teknik optimasi evolusi
         </p>
         <a
           href="training.html"
           class="btn btn-lg"
-          style="background: white; color: #d8122a"
-          >Start Simulation</a
+          style="background: white; color: #5dade2"
+          >Mulai Simulasi</a
         >
       </div>
     </section>
@@ -74,13 +70,14 @@
     <section class="section">
       <div class="container">
         <div style="max-width: 800px; margin: 0 auto; text-align: center">
-          <h2 class="mb-3">Welcome to Healthcare Scheduler</h2>
+          <h2 class="mb-3">Selamat Datang di Healthcare Scheduler</h2>
           <p style="font-size: 1.1rem">
-            This platform simulates and compares multiple optimization
-            algorithms for solving the cloud healthcare patient-doctor
-            scheduling problem. The objective is to minimize workload imbalance
-            (measured as standard deviation of doctor consultation times) across
-            healthcare providers while efficiently assigning patients.
+            Proyek ini melakukan simulasi dan perbandingan beberapa algoritma
+            optimasi untuk menyelesaikan masalah penjadwalan pasien-dokter pada
+            sistem layanan kesehatan berbasis cloud. Tujuan utama proyek adalah
+            meminimalkan ketimpangan beban kerja dokter, yang diukur dari
+            standar deviasi durasi konsultasi, sekaligus mendistribusikan pasien
+            secara efisien ke setiap penyedia layanan kesehatan.
           </p>
         </div>
       </div>
@@ -89,7 +86,7 @@
     <!-- ===== Problem Overview ===== -->
     <section class="section bg-light">
       <div class="container">
-        <h2 class="text-center mb-4">Problem Definition</h2>
+        <h2 class="text-center mb-4">Definisi Masalah</h2>
         <div class="grid grid-2" style="max-width: 900px; margin: 0 auto">
           <div class="card">
             <div class="card-icon">
@@ -106,11 +103,12 @@
             </div>
             <h3 class="card-header">Input</h3>
             <div class="card-body">
-              <p><strong>nP</strong> patients (100-400)</p>
-              <p><strong>nD</strong> doctors (10-40)</p>
-              <p>Each patient has a random consultation time (5-20 minutes)</p>
+              <p><strong>nP</strong> pasien (100-400)</p>
+              <p><strong>nD</strong> dokter (10-40)</p>
+              <p>Setiap pasien memiliki durasi konsultasi acak (5-20 menit)</p>
               <p>
-                <strong>16 test instances</strong> (T1-T16) with varying scales
+                <strong>16 test instances</strong> (T1-T16) dengan skala yang
+                berbeda
               </p>
             </div>
           </div>
@@ -128,14 +126,16 @@
                 />
               </svg>
             </div>
-            <h3 class="card-header">Objective</h3>
+            <h3 class="card-header">Tujuan</h3>
             <div class="card-body">
               <p>
-                <strong>Minimize:</strong> Standard deviation of total
-                consultation time across all doctors
+                <strong>Meminimalkan:</strong> Standar deviasi waktu konsultasi
+                total di seluruh dokter
               </p>
-              <p><strong>Goal:</strong> Balanced workload distribution</p>
-              <p><strong>Metric (TF):</strong> σ(doctor_times)</p>
+              <p>
+                <strong>Tujuan:</strong> Distribusi beban kerja yang seimbang
+              </p>
+              <p><strong>Metrik (TF):</strong> σ(doctor_times)</p>
             </div>
           </div>
         </div>
@@ -145,10 +145,10 @@
     <!-- ===== Algorithms Section ===== -->
     <section class="section">
       <div class="container">
-        <h2 class="text-center mb-4">Optimization Algorithms</h2>
+        <h2 class="text-center mb-4">Algoritma Optimasi</h2>
         <p class="text-center mb-4" style="max-width: 700px; margin: 0 auto">
-          Compare five different optimization approaches, from simple baselines
-          to advanced evolutionary algorithms
+          Perbandingan lima pendekatan optimasi yang berbeda, dari pendekatan
+          dasar sederhana hingga algoritma evolusi yang canggih
         </p>
 
         <div class="grid grid-4">
@@ -168,10 +168,10 @@
                 />
               </svg>
             </div>
-            <h3 class="card-header">Random</h3>
+            <h3 class="card-header">Acak</h3>
             <div class="card-body">
-              Baseline approach generating random patient-doctor assignments
-              over multiple iterations
+              Pendekatan dasar yang menghasilkan penugasan pasien-dokter secara
+              acak melalui beberapa iterasi.
             </div>
           </div>
 
@@ -193,8 +193,8 @@
             </div>
             <h3 class="card-header">Greedy</h3>
             <div class="card-body">
-              Deterministic algorithm assigning each patient to the doctor with
-              the least current workload
+              Algoritma deterministik yang menugaskan setiap pasien ke dokter
+              dengan beban kerja terkini paling rendah.
             </div>
           </div>
 
@@ -216,8 +216,8 @@
             </div>
             <h3 class="card-header">DE</h3>
             <div class="card-body">
-              Differential Evolution with mutation, crossover, and selection
-              operations (PopSize: 80)
+              Differential Evolution dengan operasi mutasi, crossover, dan
+              seleksi (Ukuran Populasi: 80).
             </div>
           </div>
 
@@ -239,7 +239,7 @@
             </div>
             <h3 class="card-header">GA</h3>
             <div class="card-body">
-              Genetic Algorithm using tournament selection and mutation (MR:
+              Genetic Algorithm menggunakan seleksi turnamen dan mutasi (MR:
               0.1)
             </div>
           </div>
@@ -252,31 +252,32 @@
             margin: 32px auto 0;
             background: linear-gradient(
               135deg,
-              rgba(216, 18, 42, 0.05),
-              rgba(255, 165, 0, 0.05)
+              rgba(100, 181, 235, 0.434),
+              rgba(100, 181, 235, 0.208)
             );
           "
         >
-          <h3 class="card-header text-red">
+          <h3 class="card-header color: #666">
             ⭐ DGA - Distributed Genetic Algorithm
           </h3>
           <div class="card-body">
-            <p><strong>Advanced approach</strong> featuring:</p>
+            <p><strong>Pendekatan yang lebih maju</strong> menampilkan:</p>
             <ul style="margin-left: 20px; color: #666">
               <li>
-                <strong>4 sub-populations</strong> (NSP) with 20 individuals
-                each (SPS)
+                <strong>4 sub-populasi</strong> (NSP) dengan 20 individu setiap
+                (SPS)
               </li>
               <li>
-                <strong>Parallel evolution</strong> with independent selection
-                and mutation
+                <strong>Evolusi paralel</strong> dengan seleksi dan mutasi yang
+                independen
               </li>
               <li>
-                <strong>Migration mechanism</strong> every 5 iterations (MI) for
-                diversity
+                <strong>Mekanisme migrasi</strong> setiap 5 iterasi (MI) untuk
+                diversifikasi
               </li>
               <li>
-                <strong>Global best tracking</strong> across all sub-populations
+                <strong>Pelacakan terbaik global</strong> di seluruh
+                sub-populasi
               </li>
             </ul>
           </div>
@@ -287,19 +288,19 @@
     <!-- ===== Test Instances ===== -->
     <section class="section bg-light">
       <div class="container">
-        <h2 class="text-center mb-4">Test Instances (T1-T16)</h2>
+        <h2 class="text-center mb-4">Instans Uji (T1-T16)</h2>
         <p class="text-center mb-4">
-          Comprehensive test suite covering various problem scales
+          Suite pengujian yang menyeluruh untuk berbagai skala masalah
         </p>
 
         <div class="table-container" style="max-width: 800px; margin: 0 auto">
           <table class="table">
             <thead>
               <tr>
-                <th>Instance</th>
-                <th>Patients (nP)</th>
-                <th>Doctors (nD)</th>
-                <th>Complexity</th>
+                <th>Instans</th>
+                <th>Pasien (nP)</th>
+                <th>Dokter (nD)</th>
+                <th>Kompleksitas</th>
               </tr>
             </thead>
             <tbody>
@@ -307,97 +308,97 @@
                 <td>T1</td>
                 <td>100</td>
                 <td>10</td>
-                <td>Small</td>
+                <td>Kecil</td>
               </tr>
               <tr>
                 <td>T2</td>
                 <td>100</td>
                 <td>20</td>
-                <td>Small</td>
+                <td>Kecil</td>
               </tr>
               <tr>
                 <td>T3</td>
                 <td>100</td>
                 <td>30</td>
-                <td>Small</td>
+                <td>Kecil</td>
               </tr>
               <tr>
                 <td>T4</td>
                 <td>100</td>
                 <td>40</td>
-                <td>Small</td>
+                <td>Kecil</td>
               </tr>
               <tr>
                 <td>T5</td>
                 <td>200</td>
                 <td>10</td>
-                <td>Medium</td>
+                <td>Sedang</td>
               </tr>
               <tr>
                 <td>T6</td>
                 <td>200</td>
                 <td>20</td>
-                <td>Medium</td>
+                <td>Sedang</td>
               </tr>
               <tr>
                 <td>T7</td>
                 <td>200</td>
                 <td>30</td>
-                <td>Medium</td>
+                <td>Sedang</td>
               </tr>
               <tr>
                 <td>T8</td>
                 <td>200</td>
                 <td>40</td>
-                <td>Medium</td>
+                <td>Sedang</td>
               </tr>
               <tr>
                 <td>T9</td>
                 <td>300</td>
                 <td>10</td>
-                <td>Large</td>
+                <td>Besar</td>
               </tr>
               <tr>
                 <td>T10</td>
                 <td>300</td>
                 <td>20</td>
-                <td>Large</td>
+                <td>Besar</td>
               </tr>
               <tr>
                 <td>T11</td>
                 <td>300</td>
                 <td>30</td>
-                <td>Large</td>
+                <td>Besar</td>
               </tr>
               <tr>
                 <td>T12</td>
                 <td>300</td>
                 <td>40</td>
-                <td>Large</td>
+                <td>Besar</td>
               </tr>
               <tr>
                 <td>T13</td>
                 <td>400</td>
                 <td>10</td>
-                <td>Very Large</td>
+                <td>Sangat Besar</td>
               </tr>
               <tr>
                 <td>T14</td>
                 <td>400</td>
                 <td>20</td>
-                <td>Very Large</td>
+                <td>Sangat Besar</td>
               </tr>
               <tr>
                 <td>T15</td>
                 <td>400</td>
                 <td>30</td>
-                <td>Very Large</td>
+                <td>Sangat Besar</td>
               </tr>
               <tr>
                 <td>T16</td>
                 <td>400</td>
                 <td>40</td>
-                <td>Very Large</td>
+                <td>Sangat Besar</td>
               </tr>
             </tbody>
           </table>
@@ -408,18 +409,20 @@
     <!-- ===== CTA Section ===== -->
     <section class="section">
       <div class="container text-center">
-        <h2 class="mb-3">Ready to Run Simulations?</h2>
+        <h2 class="mb-3">Siap untuk Melakukan Simulasi?</h2>
         <p
           class="mb-4"
           style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px"
         >
-          Configure parameters, select algorithms to compare, and visualize
-          convergence results in real-time
+          Konfigurasikan parameter, pilih algoritma untuk dibandingkan, dan
+          visualisasikan hasil konvergensi dalam waktu real
         </p>
         <a href="training.html" class="btn btn-primary btn-lg"
-          >Go to Training Page</a
+          >Pergi ke Halaman Pelatihan</a
         >
-        <a href="about.html" class="btn btn-outline btn-lg ml-2">Learn More</a>
+        <a href="about.html" class="btn btn-outline btn-lg ml-2"
+          >Pelajari Lebih Lanjut</a
+        >
       </div>
     </section>
 
@@ -430,13 +433,13 @@
           <div class="footer-section">
             <h4>Healthcare Scheduler</h4>
             <p>
-              Advanced optimization platform for cloud healthcare patient-doctor
-              scheduling using distributed genetic algorithms.
+              Optimasi penjadwalan pasien-dokter menggunakan algoritma genetik
+              dan teknik optimasi evolusi.
             </p>
           </div>
 
           <div class="footer-section">
-            <h4>Contact</h4>
+            <h4>Kontak</h4>
             <p>📧 contact@healthscheduler.com</p>
             <p>📱 +62 xxx xxxx xxxx</p>
             <div class="footer-social">
@@ -465,10 +468,7 @@
         </div>
 
         <div class="footer-bottom">
-          <p>
-            &copy; 2025 Healthcare Scheduler Project. Cloud Healthcare
-            Optimization Research.
-          </p>
+          <p>&copy; 2025 Healthcare Scheduler Project.</p>
         </div>
       </div>
     </footer>
